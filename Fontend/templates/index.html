@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <title>Image Classification</title>
+</head>
+<style>
+    body {
+        /* background-color: rgb(255, 221, 255); */
+        /* background-color: rgb(187, 187, 187); */
+        background-color: rgb(223, 227, 228);
+    }
+
+    h3 {
+        text-align: center;
+        padding: 40px 0px;
+        color: white;
+
+    }
+
+    .header {
+        background-color: rgb(29, 43, 69);
+        margin-bottom: 80px;
+    }
+
+    .footer {
+        margin-top: 10.5%;
+        background-color: rgb(29, 43, 69);
+        text-align: center;
+        padding: 20px 0px;
+        color: white;
+    }
+
+    .main div h5{
+        text-align: center;
+        color: rgb(202, 58, 58);
+    }
+    .main div textarea{
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .main div textarea:hover{
+        border-color: red;
+    }
+
+    #btnPredict {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    #btnPredict button {
+        background-color: rgb(202, 58, 58);
+        border: 1px solid rgb(202, 58, 58);
+        padding: 10px 80px;
+        border-radius: 5px;
+        color: white;
+        outline: none;
+        /* font-weight: 500; */
+        font-size: large;
+    }
+
+    
+</style>
+
+<body>
+    <div class="header">
+        <h3>Thêm Dấu Cho Tiếng Việt Không Dấu</h3>
+    </div>
+    <div class="container">
+        <div class="row main">
+            <div class="col-md-6">
+                <h5>Đầu vào</h5>
+                <textarea style="width: 100%;" type='text' spellcheck='false' id="input" rows="6"></textarea>
+            </div>
+            <div class="col-md-6">
+                <h5>Đầu ra</h5>
+                <textarea style="width: 100%;" type='text' spellcheck='false'  id="output" rows="6"></textarea>
+            </div>
+        </div>
+
+        <div id="btnPredict">
+            <form action="">
+                <button id="btnPredict">Dự đoán</button>
+            </form>
+          
+        </div> 
+
+
+
+
+    </div>
+    <div class="footer">
+        by VanHau
+    </div>
+
+</body>
+<script>
+
+    // token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+
+
+    var btnPredict = document.getElementById("btnPredict");
+    btnPredict.addEventListener("click", function (e) {
+        e.preventDefault()
+        var txtInput = document.getElementById("input").value
+        // if (txtInput != '') {
+        url = "http://127.0.0.1:8000/predict/"
+        fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify({ "data": txtInput })
+        }).then((respone) => respone.json())
+            .then(function (data) {
+                // Display
+                console.log(data)
+                var txtOutput = document.getElementById("output")
+                txtOutput.value = data
+                
+
+
+            })
+        // }
+    })
+
+
+
+
+   
+
+
+
+
+</script>
+
+
+</html>
