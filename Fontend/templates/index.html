@@ -42,16 +42,17 @@
         color: white;
     }
 
-    .main div h5{
+    .main div h5 {
         text-align: center;
         color: rgb(202, 58, 58);
     }
-    .main div textarea{
+
+    .main div textarea {
         padding: 10px;
         border-radius: 5px;
     }
 
-    .main div textarea:hover{
+    .main div textarea:hover {
         border-color: red;
     }
 
@@ -71,7 +72,9 @@
         font-size: large;
     }
 
-    
+    #btnPredict button:hover {
+        background-color: rgb(170, 45, 45);
+    }
 </style>
 
 <body>
@@ -86,7 +89,7 @@
             </div>
             <div class="col-md-6">
                 <h5>Đầu ra</h5>
-                <textarea style="width: 100%;" type='text' spellcheck='false'  id="output" rows="6"></textarea>
+                <textarea style="width: 100%;" type='text' spellcheck='false' id="output" rows="6"></textarea>
             </div>
         </div>
 
@@ -94,16 +97,16 @@
             <form action="">
                 <button id="btnPredict">Dự đoán</button>
             </form>
-          
-        </div> 
+
+        </div>
 
 
 
 
     </div>
-    <div class="footer">
+    <!-- <div class="footer">
         by VanHau
-    </div>
+    </div> -->
 
 </body>
 <script>
@@ -144,10 +147,10 @@
         }).then((respone) => respone.json())
             .then(function (data) {
                 // Display
-                console.log(data)
+                // console.log(data)
                 var txtOutput = document.getElementById("output")
                 txtOutput.value = data
-                
+
 
 
             })
@@ -157,7 +160,7 @@
 
 
 
-   
+
 
 
 
