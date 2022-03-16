@@ -31,14 +31,14 @@
 
     .header {
         background-color: rgb(29, 43, 69);
-        margin-bottom: 80px;
+        /* margin-bottom: 80px; */
     }
 
     .footer {
-        margin-top: 10.5%;
+        /* margin-top: 10.5%; */
         background-color: rgb(29, 43, 69);
         text-align: center;
-        padding: 20px 0px;
+        padding: 40px 0px;
         color: white;
     }
 
@@ -57,8 +57,8 @@
     }
 
     #btnPredict {
-        margin-top: 30px;
         text-align: center;
+        margin-top: 10px;
     }
 
     #btnPredict button {
@@ -75,28 +75,48 @@
     #btnPredict button:hover {
         background-color: rgb(170, 45, 45);
     }
+
+    .container {
+        padding: 50px 0;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .main>div {
+        margin-bottom: 20px;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 </style>
 
 <body>
     <div class="header">
-        <h3>Thêm Dấu Cho Tiếng Việt Không Dấu</h3>
+        <h3>Add Accents For Vietnamese Without Accents</h3>
     </div>
     <div class="container">
         <div class="row main">
-            <div class="col-md-6">
-                <h5>Đầu vào</h5>
+            <div class="col-md-12 col-lg-6">
+                <h5>Input</h5>
                 <textarea style="width: 100%;" type='text' spellcheck='false' id="input" rows="6"
-                    placeholder="Nhập vào đây ..."></textarea>
+                    placeholder="Enter here ..."></textarea>
             </div>
-            <div class="col-md-6">
-                <h5>Đầu ra</h5>
+            <div class="col-md-12 col-lg-6">
+                <h5>Output</h5>
                 <textarea style="width: 100%;" type='text' spellcheck='false' id="output" rows="6"></textarea>
             </div>
         </div>
 
         <div id="btnPredict">
             <form action="">
-                <button id="btnPredict">Dự đoán</button>
+                <button id="btnPredict">Predict</button>
             </form>
 
         </div>
@@ -105,9 +125,9 @@
 
 
     </div>
-    <!-- <div class="footer">
+    <div class="footer">
         by VanHau
-    </div> -->
+    </div>
 
 </body>
 <script>
